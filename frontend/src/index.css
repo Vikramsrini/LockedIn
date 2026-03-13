@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-srm-red: #D32F2F;
+  --color-srm-gray: #f4f6f8;
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #4B5563;
+  --color-bg-dark: #121212;
+  --color-bg-dark-surface: #1E1E1E;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Glassmorphism Base Classes */
+.glass {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.04);
+}
+
+.glass-card hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
+}
+
+/* Animated Mesh Background Layers */
+.bg-mesh-1 {
+  position: fixed;
+  top: -10%; left: -10%;
+  width: 50vw; height: 50vw;
+  background: radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: float1 25s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-mesh-2 {
+  position: fixed;
+  bottom: -20%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: float2 30s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bg-mesh-3 {
+  position: fixed;
+  top: 30%; left: 40%;
+  width: 40vw; height: 40vw;
+  background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, rgba(255,255,255,0) 60%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: float3 20s ease-in-out infinite alternate;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes float1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(5%, 10%) scale(1.1); }
+  100% { transform: translate(-5%, 5%) scale(0.95); }
+}
+
+@keyframes float2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-10%, -5%) scale(1.05); }
+  100% { transform: translate(5%, -10%) scale(1); }
+}
+
+@keyframes float3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10%, -10%) scale(1.15); }
+  100% { transform: translate(-10%, 10%) scale(0.9); }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
