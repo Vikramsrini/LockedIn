@@ -733,7 +733,7 @@ app.get('/api/news/trending', async (req, res) => {
         sortBy: 'publishedAt',
         language: 'en',
         pageSize: 15,
-        apiKey: '10e42da5ba1c47d3a88a9fc077a76403'
+        apiKey: process.env.NEWS_API_KEY || '10e42da5ba1c47d3a88a9fc077a76403'
       }
     });
     res.json(response.data);
