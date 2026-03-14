@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { apiUrl } from '../services/api';
 
 const Trending = () => {
   const [news, setNews] = useState([]);
@@ -9,7 +10,7 @@ const Trending = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch('/api/news/trending');
+        const response = await fetch(apiUrl('/api/news/trending'));
         if (!response.ok) throw new Error('Failed to fetch news');
         const data = await response.json();
         

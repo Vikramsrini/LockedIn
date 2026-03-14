@@ -129,7 +129,7 @@ Scoring rules:
 async function runChatCompletion(messages, options = {}) {
   const LLM_API_KEY = process.env.LLM_API_KEY;
   const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
-  const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile';
+  const LLM_MODEL = process.env.LLM_MODEL || 'meta-llama/llama-3.3-70b-instruct';
 
   if (!LLM_API_KEY) {
     return null;
@@ -382,19 +382,19 @@ app.post('/api/auth/login', async (req, res) => {
   let browser = null;
   try {
     sendStatus(sessionId, 'launch', 'Launching browser...');
-    
-    const launchOptions = isProd 
+
+    const launchOptions = isProd
       ? {
-          args: chromium.args,
-          defaultViewport: chromium.defaultViewport,
-          executablePath: await chromium.executablePath(),
-          headless: chromium.headless,
-        }
+        args: chromium.args,
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      }
       : {
-          headless: true,
-          defaultViewport: null,
-          args: ['--start-maximized', '--no-sandbox', '--disable-setuid-sandbox'],
-        };
+        headless: true,
+        defaultViewport: null,
+        args: ['--start-maximized', '--no-sandbox', '--disable-setuid-sandbox'],
+      };
 
     browser = await (isProd ? puppeteerCore : puppeteer).launch(launchOptions);
 
@@ -558,7 +558,7 @@ Student data: ${JSON.stringify(student_data || {})}`;
       `${LLM_BASE_URL}/chat/completions`,
       {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${LLM_API_KEY}`
         },
