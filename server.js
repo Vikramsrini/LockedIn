@@ -128,7 +128,7 @@ Scoring rules:
 
 async function runChatCompletion(messages, options = {}) {
   const LLM_API_KEY = process.env.LLM_API_KEY;
-  const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1';
+  const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://openrouter.ai/api/v1';
   const LLM_MODEL = process.env.LLM_MODEL || 'meta-llama/llama-3.3-70b-instruct';
 
   if (!LLM_API_KEY) {
@@ -523,8 +523,8 @@ app.post('/api/chatbot/ask', async (req, res) => {
   const { message, student_data, history } = req.body;
 
   const LLM_API_KEY = process.env.LLM_API_KEY;
-  const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://api.groq.com/openai/v1'; // Defaulting to Groq for speed but works with any OpenAI Compatible endpoint (Together, OpenRouter, etc)
-  const LLM_MODEL = process.env.LLM_MODEL || 'llama-3.3-70b-versatile'; // Standard available model on groq or openrouter
+  const LLM_BASE_URL = process.env.LLM_BASE_URL || 'https://openrouter.ai/api/v1';
+  const LLM_MODEL = process.env.LLM_MODEL || 'meta-llama/llama-3.3-70b-instruct';
 
   if (!LLM_API_KEY) {
     return res.status(500).json({ reply: 'LLM API key not configured. Set LLM_API_KEY in your environment.' });
@@ -554,36 +554,67 @@ Student data: ${JSON.stringify(student_data || {})}`;
       messages.push({ role: 'user', content: message });
     }
 
-    const response = await fetch(
-      `${LLM_BASE_URL}/chat/completions`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${LLM_API_KEY}`
-        },
-        body: JSON.stringify({
-          model: LLM_MODEL,
-          messages,
-          temperature: 0.7,
-          max_tokens: 1024,
-        }),
-      }
-    );
+    // Set headers for SSE
+    res.setHeader('Content-Type', 'text/event-stream');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Connection', 'keep-alive');
 
-    const data = await response.json();
+    const response = await fetch(`${LLM_BASE_URL}/chat/completions`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${LLM_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: LLM_MODEL,
+        messages,
+        temperature: 0.7,
+        max_tokens: 1024,
+        stream: true,
+      }),
+    });
 
-    if (data.error) {
-      console.error('LLM API error:', data.error);
-      return res.json({ reply: `API error: ${data.error.message}` });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'Failed to start stream');
     }
 
-    const reply = data.choices?.[0]?.message?.content || 'Sorry, I could not generate a response.';
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder();
 
-    res.json({ reply });
+    let buffer = '';
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop(); // Keep partial line in buffer
+
+      for (const line of lines) {
+        if (line.startsWith('data: ')) {
+          const dataStr = line.slice(6).trim();
+          if (dataStr === '[DONE]') {
+            res.write('data: [DONE]\n\n');
+            continue;
+          }
+          try {
+            const data = JSON.parse(dataStr);
+            const content = data.choices?.[0]?.delta?.content || '';
+            if (content) {
+              res.write(`data: ${JSON.stringify({ content })}\n\n`);
+            }
+          } catch (e) {
+            // Ignore parse errors for incomplete JSON
+          }
+        }
+      }
+    }
+    res.end();
   } catch (error) {
-    console.error('Chatbot error:', error.message);
-    res.json({ reply: 'Oops, something went wrong connecting to the Open Source AI service.' });
+    console.error('Chatbot streaming error:', error.message);
+    res.write(`data: ${JSON.stringify({ error: error.message })}\n\n`);
+    res.end();
   }
 });
 
