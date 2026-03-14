@@ -15,12 +15,12 @@ const FeatureGrid = ({ theme = 'light', title, eyebrow, description }) => {
             </p>
           )}
           {title && (
-            <h2 className={isDark ? 'text-4xl md:text-5xl font-black mt-3' : 'mt-3 text-2xl md:text-3xl font-bold text-gray-900'}>
+            <h2 className={isDark ? 'text-4xl md:text-5xl font-black mt-3' : 'mt-3 text-2xl md:text-3xl font-bold text-gray-100'}>
               {title}
             </h2>
           )}
           {description && (
-            <p className={isDark ? 'text-gray-400 mt-4 max-w-2xl mx-auto' : 'mt-3 max-w-2xl text-sm md:text-base text-gray-600'}>
+            <p className={isDark ? 'text-gray-400 mt-4 max-w-2xl mx-auto' : 'mt-3 max-w-2xl text-sm md:text-base text-gray-400'}>
               {description}
             </p>
           )}
@@ -40,26 +40,26 @@ const FeatureGrid = ({ theme = 'light', title, eyebrow, description }) => {
               transition={{ duration: 0.45, delay: index * 0.08 }}
               className={isDark
                 ? 'relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm'
-                : `relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm ring-1 ${feature.ring} transition-all hover:-translate-y-1 hover:shadow-lg`}
+                : `relative overflow-hidden rounded-2xl border border-white/20 bg-[#151521] p-6 shadow-[0_4px_12px_rgba(0,0,0,0.5)] ring-1 ${feature.ring} transition-all hover:-translate-y-1 hover:shadow-lg`}
             >
               <div className={isDark ? 'absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_#ffffff_0%,_transparent_55%)]' : `absolute inset-x-0 top-0 h-24 bg-gradient-to-r ${feature.accent} opacity-10`} />
               <div className="relative">
                 <div className={isDark ? `w-12 h-12 rounded-xl bg-gradient-to-br ${feature.accent} p-[1px] mb-5` : `mb-5 inline-flex items-center gap-3 rounded-2xl bg-gradient-to-br ${feature.accent} p-[1px]`}>
-                  <div className={isDark ? 'w-full h-full rounded-xl bg-black/80 flex items-center justify-center' : 'flex h-12 w-12 items-center justify-center rounded-2xl bg-white'}>
+                  <div className={isDark ? 'w-full h-full rounded-xl bg-black/80 flex items-center justify-center' : 'flex h-12 w-12 items-center justify-center rounded-2xl bg-[#151521]'}>
                     <Icon size={20} className={isDark ? 'text-white' : feature.iconClassName} />
                   </div>
                 </div>
 
                 {!isDark && (
-                  <span className="mb-4 inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
+                  <span className="mb-4 inline-flex rounded-full bg-[#1e1e2d] px-3 py-1 text-xs font-semibold text-gray-400">
                     {feature.badge}
                   </span>
                 )}
 
-                <h3 className={isDark ? 'text-2xl font-bold mb-2 text-white' : 'text-xl font-bold text-gray-900'}>
+                <h3 className={isDark ? 'text-2xl font-bold mb-2 text-white' : 'text-xl font-bold text-gray-100'}>
                   {feature.title}
                 </h3>
-                <p className={isDark ? 'text-gray-300 leading-relaxed' : 'mt-2 leading-relaxed text-gray-600'}>
+                <p className={isDark ? 'text-gray-300 leading-relaxed' : 'mt-2 leading-relaxed text-gray-400'}>
                   {feature.description}
                 </p>
               </div>

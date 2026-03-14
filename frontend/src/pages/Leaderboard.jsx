@@ -62,9 +62,9 @@ const Leaderboard = () => {
 
   const getRankStyle = (rank) => {
     switch (rank) {
-      case 1: return 'bg-yellow-100/50 text-yellow-700 border-yellow-200';
-      case 2: return 'bg-gray-100/50 text-gray-700 border-gray-200';
-      case 3: return 'bg-orange-100/50 text-orange-700 border-orange-200';
+      case 1: return 'bg-yellow-900/30 text-yellow-500 border-yellow-700/50';
+      case 2: return 'bg-gray-800/50 text-gray-300 border-white/20';
+      case 3: return 'bg-orange-900/30 text-orange-500 border-orange-700/50';
       default: return 'text-gray-500 border-transparent';
     }
   };
@@ -82,7 +82,7 @@ const Leaderboard = () => {
     <div className="w-full max-w-[1600px] mx-auto p-4 md:p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 drop-shadow-sm">
+          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-400 drop-shadow-sm">
             University Leaderboard
           </h1>
           <p className="text-gray-500 mt-2">See how you rank against your university peers.</p>
@@ -90,11 +90,11 @@ const Leaderboard = () => {
         <div className="text-4xl">🏆</div>
       </div>
 
-      <div className="glass-panel border-white/40 shadow-sm rounded-2xl overflow-hidden">
+      <div className="glass-panel border-white/10 shadow-[0_4px_12px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50/50 border-b border-gray-200/60 uppercase text-xs font-semibold text-gray-500 tracking-wider">
+              <tr className="bg-[#0b0b12] border-b border-white/10 uppercase text-xs font-semibold text-gray-500 tracking-wider">
                 <th className="p-5 text-center w-20">Rank</th>
                 <th className="p-5">Student</th>
                 <th className="p-5 hidden md:table-cell">Department</th>
@@ -114,8 +114,8 @@ const Leaderboard = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                     className={`
-                      border-b last:border-b-0 border-gray-100 hover:bg-white/40 transition-colors
-                      ${isUser ? 'bg-red-50/40 hover:bg-red-50/60 font-medium' : ''}
+                      border-b last:border-b-0 border-white/10 hover:bg-white/5 transition-colors
+                      ${isUser ? 'bg-red-900/20 hover:bg-red-900/30 font-medium' : ''}
                     `}
                   >
                     <td className="p-5 text-center">
@@ -125,31 +125,31 @@ const Leaderboard = () => {
                     </td>
                     <td className="p-5">
                       <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white shadow-sm ${isUser ? 'bg-red-500' : 'bg-gray-800'}`}>
+                        <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-white shadow-[0_4px_12px_rgba(0,0,0,0.5)] ${isUser ? 'bg-red-500' : 'bg-gray-800'}`}>
                           {student.name.charAt(0)}
                         </div>
                         <div>
-                          <p className={`text-sm ${isUser ? 'text-red-700 font-bold' : 'text-gray-900'}`}>
+                          <p className={`text-sm ${isUser ? 'text-red-400 font-bold' : 'text-gray-100'}`}>
                             {student.name}
                           </p>
                           <p className="text-xs text-gray-500 md:hidden">{student.department}</p>
                         </div>
                       </div>
                     </td>
-                    <td className="p-5 hidden md:table-cell text-sm text-gray-600">
+                    <td className="p-5 hidden md:table-cell text-sm text-gray-400">
                       {student.department}
                     </td>
                     <td className="p-5 text-center">
-                      <div className="inline-block px-3 py-1 bg-gray-50 rounded-full text-xs font-semibold text-gray-700">
+                      <div className="inline-block px-3 py-1 bg-[#0b0b12] rounded-full text-xs font-semibold text-gray-300">
                         {student.leetcode}
                       </div>
                     </td>
                     <td className="p-5 text-center hidden sm:table-cell">
-                      <div className="inline-block px-3 py-1 bg-gray-50 rounded-full text-xs font-semibold text-gray-700">
+                      <div className="inline-block px-3 py-1 bg-[#0b0b12] rounded-full text-xs font-semibold text-gray-300">
                         {student.projects}
                       </div>
                     </td>
-                    <td className="p-5 text-right font-bold text-gray-900">
+                    <td className="p-5 text-right font-bold text-gray-100">
                       {student.score.toLocaleString()}
                     </td>
                   </motion.tr>

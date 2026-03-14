@@ -37,7 +37,7 @@ const Trending = () => {
     <div className="w-full max-w-[1600px] mx-auto p-4 md:p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 drop-shadow-sm">
+          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 drop-shadow-sm">
             Trending News
           </h1>
           <p className="text-gray-500 mt-2">Latest updates in tech, software, and the job market.</p>
@@ -52,7 +52,7 @@ const Trending = () => {
       )}
 
       {error && !loading && (
-        <div className="bg-red-50 text-red-500 p-4 rounded-xl shadow-sm border border-red-100 flex items-center gap-3">
+        <div className="bg-red-500/10 text-red-400 p-4 rounded-xl border border-red-500/20 flex items-center gap-3">
           <span>⚠️</span>
           <p>Unable to load trending news. Please try again later.</p>
         </div>
@@ -69,7 +69,7 @@ const Trending = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              className="glass-panel rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full border border-white/40"
+              className="glass-panel rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 group flex flex-col h-full border border-white/10"
             >
               <div className="relative h-48 overflow-hidden">
                 <img 
@@ -94,10 +94,10 @@ const Trending = () => {
                 <div className="text-xs text-red-500 font-bold mb-2 uppercase tracking-wider">
                   {article.source?.name || 'News Source'}
                 </div>
-                <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 leading-tight">
+                <h3 className="font-bold text-gray-100 mb-2 line-clamp-2 leading-tight">
                   {article.title}
                 </h3>
-                <p className="text-gray-600 text-sm line-clamp-3 mb-4 flex-1">
+                <p className="text-gray-400 text-sm line-clamp-3 mb-4 flex-1">
                   {article.description}
                 </p>
                 <div className="mt-auto flex items-center text-red-500 text-sm font-medium group-hover:translate-x-1 transition-transform">

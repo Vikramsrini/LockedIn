@@ -356,16 +356,16 @@ const PlacementPlan = () => {
 
   return (
     <div className="p-6 w-full max-w-[1600px] mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-1">Placement Plan</h1>
+      <h1 className="text-3xl font-bold text-gray-200 mb-1">Placement Plan</h1>
       <p className="text-gray-500 text-sm mb-8">Personalized roadmap based on your current subjects and schedule.</p>
 
       {/* Progress bar */}
-      <div className="bg-white rounded-xl border border-gray-100 p-5 shadow-sm mb-8">
+      <div className="bg-white/5 rounded-xl border border-white/10 p-5 mb-8">
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-bold text-gray-800 flex items-center gap-2"><Target size={18} className="text-red-500" /> Overall Progress</h3>
+          <h3 className="font-bold text-gray-200 flex items-center gap-2"><Target size={18} className="text-red-500" /> Overall Progress</h3>
           <span className="text-sm font-bold text-red-600">{progress}%</span>
         </div>
-        <div className="w-full bg-gray-100 rounded-full h-3">
+        <div className="w-full bg-white/10 rounded-full h-3">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
@@ -377,33 +377,33 @@ const PlacementPlan = () => {
       </div>
 
       {/* Free time analysis & progress projection */}
-      <div className="bg-white rounded-xl border border-gray-100 p-5 shadow-sm mb-8">
-        <h3 className="font-bold text-gray-800 mb-4 flex items-center gap-2"><Clock size={18} className="text-blue-500" /> Your Free Windows for Prep</h3>
+      <div className="bg-white/5 rounded-xl border border-white/10 p-5 mb-8">
+        <h3 className="font-bold text-gray-200 mb-4 flex items-center gap-2"><Clock size={18} className="text-blue-500" /> Your Free Windows for Prep</h3>
         
         {prepWindows.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 pb-6 border-b border-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 pb-6 border-b border-white/10">
             {/* Metric: Weekly Hours */}
-            <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-lg p-4 border border-blue-100">
-              <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide mb-1">Weekly Prep Hours</p>
-              <p className="text-2xl font-bold text-blue-700">{metrics.weeklyHours}h</p>
-              <p className="text-xs text-gray-600 mt-1">{metrics.weeklyMinutes} minutes available</p>
+            <div className="bg-blue-500/10 rounded-lg p-4 border border-blue-500/20">
+              <p className="text-xs font-semibold text-blue-400 uppercase tracking-wide mb-1">Weekly Prep Hours</p>
+              <p className="text-2xl font-bold text-blue-300">{metrics.weeklyHours}h</p>
+              <p className="text-xs text-gray-500 mt-1">{metrics.weeklyMinutes} minutes available</p>
             </div>
 
             {/* Metric: Days to Placement Ready */}
-            <div className="bg-gradient-to-br from-emerald-50 to-green-50 rounded-lg p-4 border border-emerald-100">
-              <p className="text-xs font-semibold text-emerald-600 uppercase tracking-wide mb-1">Road to Placement Ready</p>
-              <p className="text-2xl font-bold text-emerald-700">{metrics.estimatedDays} days</p>
-              <p className="text-xs text-gray-600 mt-1">at current prep pace</p>
+            <div className="bg-emerald-500/10 rounded-lg p-4 border border-emerald-500/20">
+              <p className="text-xs font-semibold text-emerald-400 uppercase tracking-wide mb-1">Road to Placement Ready</p>
+              <p className="text-2xl font-bold text-emerald-300">{metrics.estimatedDays} days</p>
+              <p className="text-xs text-gray-500 mt-1">at current prep pace</p>
             </div>
 
             {/* Metric: Weekly Progress */}
-            <div className="bg-gradient-to-br from-purple-50 to-violet-50 rounded-lg p-4 border border-purple-100">
-              <p className="text-xs font-semibold text-purple-600 uppercase tracking-wide mb-1">Weekly Progress</p>
+            <div className="bg-purple-500/10 rounded-lg p-4 border border-purple-500/20">
+              <p className="text-xs font-semibold text-purple-400 uppercase tracking-wide mb-1">Weekly Progress</p>
               <div className="flex items-end gap-2">
-                <p className="text-2xl font-bold text-purple-700">{metrics.weeklyProgress}%</p>
-                <p className="text-xs text-gray-600 mb-1">of total goal</p>
+                <p className="text-2xl font-bold text-purple-300">{metrics.weeklyProgress}%</p>
+                <p className="text-xs text-gray-500 mb-1">of total goal</p>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+              <div className="w-full bg-white/10 rounded-full h-2 mt-2">
                 <div
                   className="h-2 rounded-full bg-gradient-to-r from-purple-500 to-violet-500"
                   style={{ width: `${metrics.weeklyProgress}%` }}
@@ -413,24 +413,24 @@ const PlacementPlan = () => {
           </div>
         )}
 
-        <p className="text-sm text-gray-600 mb-4">Only slots longer than 30 minutes are counted. Each one below is matched with a specific prep activity:</p>
+        <p className="text-sm text-gray-400 mb-4">Only slots longer than 30 minutes are counted. Each one below is matched with a specific prep activity:</p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {prepWindows.slice(0, 9).map((w, i) => (
-            <div key={i} className="p-4 bg-gradient-to-br from-gray-50 to-white rounded-lg border border-gray-200 hover:border-gray-300 transition-colors">
+            <div key={i} className="p-4 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-colors">
               <div className="flex items-start justify-between mb-2">
                 <div>
-                  <p className="text-sm font-semibold text-gray-800">{w.day}</p>
+                  <p className="text-sm font-semibold text-white">{w.day}</p>
                   <p className="text-xs text-gray-500">{w.from} → {w.to}</p>
                 </div>
-                <span className="text-[11px] px-2 py-1 rounded-full bg-blue-100 text-blue-700 font-semibold">{w.durationLabel}</span>
+                <span className="text-[11px] px-2 py-1 rounded-full bg-blue-500/20 text-blue-400 font-semibold">{w.durationLabel}</span>
               </div>
               <div className="space-y-2">
                 <div>
-                  <p className="text-xs font-semibold text-gray-700">{w.suggestion.task}</p>
+                  <p className="text-xs font-semibold text-gray-300">{w.suggestion.task}</p>
                   <p className="text-[11px] text-gray-500 mt-1">📌 {w.suggestion.category}</p>
                 </div>
-                <div className="pt-2 border-t border-gray-200">
-                  <p className="text-[11px] text-emerald-700 font-medium">✓ {w.suggestion.impact}</p>
+                <div className="pt-2 border-t border-white/10">
+                  <p className="text-[11px] text-emerald-400 font-medium">✓ {w.suggestion.impact}</p>
                 </div>
               </div>
             </div>
@@ -443,13 +443,13 @@ const PlacementPlan = () => {
 
       {/* Subject-specific recommendations */}
       {recommendations.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-100 shadow-sm mb-8 overflow-hidden">
-          <div className="p-5 border-b border-gray-100">
-            <h3 className="font-bold text-gray-800 flex items-center gap-2"><BookOpen size={18} className="text-purple-500" /> Course-Specific Placement Prep</h3>
+        <div className="bg-white/5 rounded-xl border border-white/10 mb-8 overflow-hidden">
+          <div className="p-5 border-b border-white/10">
+            <h3 className="font-bold text-gray-200 flex items-center gap-2"><BookOpen size={18} className="text-purple-500" /> Course-Specific Placement Prep</h3>
           </div>
 
           {/* Tabs */}
-          <div className="flex border-b border-gray-100 overflow-x-auto">
+          <div className="flex border-b border-white/10 overflow-x-auto">
             {recommendations.map((rec, idx) => {
               const Icon = rec.icon;
               return (
@@ -477,29 +477,29 @@ const PlacementPlan = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-3">Key Skills to Build</h4>
+                  <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-3">Key Skills to Build</h4>
                   <div className="space-y-2">
                     {recommendations[activeRec].skills.map((s, i) => (
                       <div key={i} className="flex items-start gap-2">
                         <ChevronRight size={14} className="text-emerald-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{s}</span>
+                        <span className="text-sm text-gray-300">{s}</span>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-3">Project Ideas</h4>
+                  <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-3">Project Ideas</h4>
                   <div className="space-y-2">
                     {recommendations[activeRec].projects.map((p, i) => (
                       <div key={i} className="flex items-start gap-2">
                         <Zap size={14} className="text-amber-500 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-gray-700">{p}</span>
+                        <span className="text-sm text-gray-300">{p}</span>
                       </div>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-3">LeetCode Problems</h4>
+                  <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-3">LeetCode Problems</h4>
                   <div className="flex flex-wrap gap-2">
                     {recommendations[activeRec].leetcode.map((l, i) => (
                       <a
@@ -507,7 +507,7 @@ const PlacementPlan = () => {
                         href={`https://leetcode.com/problems/${l.toLowerCase().replace(/\s+/g, '-')}/`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full font-medium transition-colors"
+                        className="text-xs px-3 py-1.5 bg-white/5 hover:bg-white/10 text-gray-300 rounded-full font-medium transition-colors border border-white/10"
                       >
                         {l}
                       </a>
@@ -515,10 +515,10 @@ const PlacementPlan = () => {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-gray-700 uppercase tracking-wide mb-3">Target Companies</h4>
+                  <h4 className="text-sm font-bold text-gray-300 uppercase tracking-wide mb-3">Target Companies</h4>
                   <div className="flex flex-wrap gap-2">
                     {recommendations[activeRec].companies.map((c, i) => (
-                      <span key={i} className="text-xs px-3 py-1.5 bg-red-50 text-red-700 rounded-full font-semibold">{c}</span>
+                      <span key={i} className="text-xs px-3 py-1.5 bg-red-500/20 text-red-400 rounded-full font-semibold">{c}</span>
                     ))}
                   </div>
                 </div>
@@ -529,15 +529,15 @@ const PlacementPlan = () => {
       )}
 
       {/* Placement Roadmap */}
-      <div className="bg-white rounded-xl border border-gray-100 p-5 shadow-sm">
-        <h3 className="font-bold text-gray-800 mb-6 flex items-center gap-2"><TrendingUp size={18} className="text-emerald-500" /> 12-Week Placement Roadmap</h3>
+      <div className="bg-white/5 rounded-xl border border-white/10 p-5">
+        <h3 className="font-bold text-gray-200 mb-6 flex items-center gap-2"><TrendingUp size={18} className="text-emerald-500" /> 12-Week Placement Roadmap</h3>
 
         <div className="space-y-8">
           {ROADMAP.map((phase, phaseIdx) => (
             <div key={phaseIdx} className={`border-l-4 ${phase.color} pl-5 relative`}>
-              <div className={`absolute -left-2.5 top-0 w-5 h-5 rounded-full ${phase.dot} border-4 border-white`} />
+              <div className={`absolute -left-2.5 top-0 w-5 h-5 rounded-full ${phase.dot} border-4 border-black`} />
               <h4 className="text-xs font-bold text-gray-400 uppercase tracking-wide">{phase.phase}</h4>
-              <h3 className="text-lg font-bold text-gray-800 mt-1 mb-3">{phase.title}</h3>
+              <h3 className="text-lg font-bold text-gray-200 mt-1 mb-3">{phase.title}</h3>
               <div className="space-y-2">
                 {phase.tasks.map((task, taskIdx) => {
                   const key = `${phaseIdx}-${taskIdx}`;
@@ -547,11 +547,11 @@ const PlacementPlan = () => {
                       key={taskIdx}
                       onClick={() => toggleTask(phaseIdx, taskIdx)}
                       className={`w-full text-left flex items-start gap-3 p-3 rounded-lg border transition-all ${
-                        done ? 'bg-emerald-50 border-emerald-200' : 'bg-gray-50 border-gray-100 hover:border-gray-200'
+                        done ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-white/5 border-white/10 hover:border-white/20'
                       }`}
                     >
                       <CheckCircle2 size={18} className={`flex-shrink-0 mt-0.5 ${done ? 'text-emerald-500' : 'text-gray-300'}`} />
-                      <span className={`text-sm ${done ? 'text-emerald-700 line-through' : 'text-gray-700'}`}>{task}</span>
+                      <span className={`text-sm ${done ? 'text-emerald-400 line-through' : 'text-gray-300'}`}>{task}</span>
                     </button>
                   );
                 })}

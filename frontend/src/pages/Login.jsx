@@ -186,7 +186,7 @@ const Login = () => {
 
         {loading && completedSteps.length === 0 && (
           <div className="flex flex-col items-center gap-3 py-8">
-            <span className="w-8 h-8 border-2 border-white/30 border-t-red-500 rounded-full animate-spin" />
+            <span className="w-8 h-8 border-2 border-white/5 border-t-red-500 rounded-full animate-spin" />
             <p className="text-gray-400 text-sm">Connecting to server...</p>
           </div>
         )}

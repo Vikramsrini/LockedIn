@@ -231,28 +231,28 @@ const PlacementQuiz = () => {
 
   const getDifficultyColor = (diff) => {
     switch(diff) {
-      case 'Easy': return 'bg-emerald-100 text-emerald-700';
-      case 'Medium': return 'bg-amber-100 text-amber-700';
-      case 'Hard': return 'bg-red-100 text-red-700';
-      default: return 'bg-gray-100 text-gray-700';
+      case 'Easy': return 'bg-emerald-500/20 text-emerald-400';
+      case 'Medium': return 'bg-amber-500/20 text-amber-400';
+      case 'Hard': return 'bg-red-500/20 text-red-400';
+      default: return 'bg-white/5 text-gray-400';
     }
   };
 
   return (
     <div className="p-8 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-extrabold mb-2 text-gray-800 drop-shadow-sm">Placement Quiz 🧠</h1>
-      <p className="text-gray-600 mb-8 font-medium">Test your knowledge across CS fundamentals, DSA, and System Design.</p>
+      <h1 className="text-3xl font-extrabold mb-2 text-gray-200 drop-shadow-sm">Placement Quiz 🧠</h1>
+      <p className="text-gray-400 mb-8 font-medium">Test your knowledge across CS fundamentals, DSA, and System Design.</p>
 
       {!activeQuiz ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {QUIZZES.map((quiz) => (
-            <div key={quiz.id} className="glass rounded-2xl p-6 hover:shadow-xl transition-all duration-300 border border-white/50 group cursor-pointer" onClick={() => startQuiz(quiz)}>
+            <div key={quiz.id} className="bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 border border-white/10 group cursor-pointer" onClick={() => startQuiz(quiz)}>
               <span className={`text-xs font-bold px-3 py-1 rounded-full ${getDifficultyColor(quiz.difficulty)} mb-4 inline-block`}>
                 {quiz.difficulty}
               </span>
-              <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-red-600 transition-colors">{quiz.title}</h3>
+              <h3 className="text-xl font-bold text-gray-200 mb-2 group-hover:text-red-600 transition-colors">{quiz.title}</h3>
               <p className="text-sm text-gray-500 mb-4">{quiz.category}</p>
-              <div className="flex items-center justify-between text-sm font-medium text-gray-600">
+              <div className="flex items-center justify-between text-sm font-medium text-gray-400">
                 <span>{quiz.questions.length} Questions</span>
                 <span className="text-blue-500 group-hover:translate-x-1 transition-transform">Start →</span>
               </div>
@@ -260,33 +260,33 @@ const PlacementQuiz = () => {
           ))}
         </div>
       ) : showResults ? (
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="glass rounded-2xl p-10 text-center max-w-xl mx-auto border border-white/50 shadow-xl relative overflow-hidden">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-white/5 rounded-2xl p-10 text-center max-w-xl mx-auto border border-white/10 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-400 to-purple-500"></div>
-          <h2 className="text-3xl font-bold mb-4 text-gray-800">Quiz Completed!</h2>
-          <div className="w-32 h-32 mx-auto rounded-full bg-blue-50 flex items-center justify-center mb-6 shadow-inner border-4 border-white">
-            <span className="text-4xl font-extrabold text-blue-600">
+          <h2 className="text-3xl font-bold mb-4 text-gray-200">Quiz Completed!</h2>
+          <div className="w-32 h-32 mx-auto rounded-full bg-blue-500/10 flex items-center justify-center mb-6 border-4 border-blue-500/20">
+            <span className="text-4xl font-extrabold text-blue-400">
               {score}/{activeQuiz.questions.length}
             </span>
           </div>
-          <p className="text-lg text-gray-600 mb-8 font-medium">
+          <p className="text-lg text-gray-400 mb-8 font-medium">
             {score === activeQuiz.questions.length ? 'Perfect score! Placement ready! 🎉' : 
              score > activeQuiz.questions.length / 2 ? 'Great job! Keep practicing! 💪' : 
              'Needs review. Time to hit the books! 📚'}
           </p>
-          <button onClick={() => setActiveQuiz(null)} className="px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-xl font-bold transition-all shadow-md hover:shadow-lg">
+          <button onClick={() => setActiveQuiz(null)} className="px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-xl font-bold transition-all border border-white/10">
             Back to Quizzes
           </button>
         </motion.div>
       ) : (
-        <motion.div key={currentQuestion} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="glass rounded-2xl p-8 max-w-2xl mx-auto border border-white/50 shadow-xl relative overflow-hidden">
+        <motion.div key={currentQuestion} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="bg-white/5 rounded-2xl p-8 max-w-2xl mx-auto border border-white/10 relative overflow-hidden">
           {/* Progress Bar */}
-          <div className="absolute top-0 left-0 w-full h-1.5 bg-gray-100">
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-white/10">
             <div className="h-full bg-red-500 transition-all duration-300" style={{ width: `${((currentQuestion) / activeQuiz.questions.length) * 100}%` }}></div>
           </div>
           
           <div className="mb-8 mt-2">
             <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Question {currentQuestion + 1} of {activeQuiz.questions.length}</span>
-            <h2 className="text-2xl font-bold text-gray-800 mt-2">{activeQuiz.questions[currentQuestion].question}</h2>
+            <h2 className="text-2xl font-bold text-gray-200 mt-2">{activeQuiz.questions[currentQuestion].question}</h2>
           </div>
 
           <div className="space-y-3 mb-8">
@@ -296,8 +296,8 @@ const PlacementQuiz = () => {
                 onClick={() => setSelectedAnswer(idx)}
                 className={`w-full text-left p-4 rounded-xl border-2 transition-all font-medium ${
                   selectedAnswer === idx 
-                    ? 'border-red-500 bg-red-50 text-red-700 shadow-sm' 
-                    : 'border-transparent bg-white/60 hover:bg-white text-gray-700 hover:shadow-sm'
+                    ? 'border-red-500 bg-red-500/10 text-red-400' 
+                    : 'border-white/10 bg-white/5 hover:bg-white/10 text-gray-300'
                 }`}
               >
                 {option}
@@ -305,14 +305,14 @@ const PlacementQuiz = () => {
             ))}
           </div>
 
-          <div className="flex justify-end pt-4 border-t border-gray-100">
+          <div className="flex justify-end pt-4 border-t border-white/10">
             <button
               onClick={handleAnswerSubmit}
               disabled={selectedAnswer === null}
               className={`px-8 py-3 rounded-xl font-bold transition-all ${
                 selectedAnswer !== null 
-                  ? 'bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg translate-y-0' 
-                  : 'bg-gray-100 text-gray-400 cursor-not-allowed transform-none'
+                  ? 'bg-red-600 hover:bg-red-700 text-white' 
+                  : 'bg-white/5 text-gray-500 cursor-not-allowed'
               }`}
             >
               {currentQuestion + 1 === activeQuiz.questions.length ? 'Finish Quiz' : 'Next Question'}

@@ -17,7 +17,7 @@ const Landing = () => {
           <a href="#how-it-works" className="text-sm font-medium hover:text-red-400 transition-colors">How it Works</a>
           <button 
             onClick={() => navigate('/login')}
-            className="px-5 py-2 bg-white text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-transform hover:scale-105"
+            className="px-5 py-2 bg-[#151521] text-black text-sm font-bold rounded-full hover:bg-gray-200 transition-transform hover:scale-105"
           >
             Enter Portal
           </button>

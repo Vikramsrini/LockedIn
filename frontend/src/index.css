@@ -3,39 +3,41 @@
 @theme {
   --color-srm-red: #D32F2F;
   --color-srm-gray: #f4f6f8;
-  --color-text-primary: #1F2937;
-  --color-text-secondary: #4B5563;
-  --color-bg-dark: #121212;
-  --color-bg-dark-surface: #1E1E1E;
+  --color-text-primary: #e5e7eb;
+  --color-text-secondary: #9ca3af;
+  --color-bg-dark: #000000;
+  --color-bg-dark-surface: #111111;
 }
 
 body {
   margin: 0;
+  background: #000;
+  color: #e5e7eb;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Glassmorphism Base Classes */
+/* Glassmorphism Base Classes – dark theme */
 .glass {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 
 .glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.5);
 }
 
-.glass-card hover {
+.glass-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.08);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
 }
 
 /* Animated Mesh Background Layers */
@@ -43,7 +45,7 @@ body {
   position: fixed;
   top: -10%; left: -10%;
   width: 50vw; height: 50vw;
-  background: radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(239,68,68,0.12) 0%, transparent 70%);
   border-radius: 50%;
   filter: blur(60px);
   animation: float1 25s ease-in-out infinite alternate;
@@ -55,7 +57,7 @@ body {
   position: fixed;
   bottom: -20%; right: -10%;
   width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
   border-radius: 50%;
   filter: blur(80px);
   animation: float2 30s ease-in-out infinite alternate;
@@ -67,7 +69,7 @@ body {
   position: fixed;
   top: 30%; left: 40%;
   width: 40vw; height: 40vw;
-  background: radial-gradient(circle, rgba(168,85,247,0.12) 0%, rgba(255,255,255,0) 60%);
+  background: radial-gradient(circle, rgba(168,85,247,0.08) 0%, transparent 60%);
   border-radius: 50%;
   filter: blur(60px);
   animation: float3 20s ease-in-out infinite alternate;
@@ -93,6 +95,24 @@ body {
   100% { transform: translate(-10%, 10%) scale(0.9); }
 }
 
+/* Custom Scrollbar – dark */
+.custom-scrollbar::-webkit-scrollbar { width: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+/* Hide scrollbar */
+.hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* Form inputs dark */
+input, select, textarea {
+  background: rgba(255,255,255,0.05);
+  color: #e5e7eb;
+}
+input::placeholder, textarea::placeholder {
+  color: #6b7280;
 }

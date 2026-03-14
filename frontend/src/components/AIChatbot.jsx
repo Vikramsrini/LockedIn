@@ -53,7 +53,7 @@ const AIChatbot = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-[0_0_25px_rgba(99,102,241,0.5)] transition-all text-white font-bold z-50 group border border-white/30 backdrop-blur-md overflow-hidden"
+          className="fixed bottom-6 right-6 p-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-[0_0_25px_rgba(99,102,241,0.5)] transition-all text-white font-bold z-50 group border border-white/5 backdrop-blur-md overflow-hidden"
         >
           <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 group-hover:rotate-12 transition-transform duration-300">
@@ -79,17 +79,17 @@ const AIChatbot = () => {
             }}
             exit={{ opacity: 0, y: 20, scale: 0.9, filter: 'blur(10px)' }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed max-h-[95vh] max-w-[95vw] glass-panel rounded-3xl shadow-2xl overflow-hidden border border-white/40 z-50 flex flex-col"
+            className="fixed max-h-[95vh] max-w-[95vw] glass-panel rounded-3xl shadow-2xl overflow-hidden border border-white/10 z-50 flex flex-col"
           >
             {/* Header */}
-            <div className="bg-white/40 backdrop-blur-md border-b border-white/30 p-5 flex justify-between items-center relative overflow-hidden">
+            <div className="bg-black/40 backdrop-blur-md border-b border-white/5 p-5 flex justify-between items-center relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 z-0"></div>
               <div className="flex items-center gap-3 z-10">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center shadow-inner text-white">
                   ✨
                 </div>
                 <div>
-                  <h3 className="font-bold text-gray-800 text-lg">AI Assistant</h3>
+                  <h3 className="font-bold text-gray-200 text-lg">AI Assistant</h3>
                   <p className="text-xs text-indigo-600 font-medium flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Online
                   </p>
@@ -98,7 +98,7 @@ const AIChatbot = () => {
               <div className="flex items-center gap-2 z-10">
                 <button 
                   onClick={() => setIsMaximized(!isMaximized)} 
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/50 hover:bg-white/80 transition-colors text-gray-600 shadow-sm"
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors text-gray-400"
                   title={isMaximized ? "Restore down" : "Maximize"}
                 >
                   {isMaximized ? (
@@ -113,7 +113,7 @@ const AIChatbot = () => {
                 </button>
                 <button 
                   onClick={() => setIsOpen(false)} 
-                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/50 hover:bg-red-500 hover:text-white transition-colors text-gray-500 font-bold shadow-sm"
+                  className="w-8 h-8 flex items-center justify-center rounded-full bg-white/10 hover:bg-red-500 hover:text-white transition-colors text-gray-400 font-bold"
                   title="Close"
                 >
                   ✕
@@ -122,7 +122,7 @@ const AIChatbot = () => {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-gradient-to-b from-transparent to-white/20 custom-scrollbar">
+            <div className="flex-1 overflow-y-auto p-5 space-y-5 bg-gradient-to-b from-transparent to-black/20 custom-scrollbar">
               {messages.map((msg, idx) => (
                 <motion.div 
                   initial={{ opacity: 0, y: 10 }}
@@ -132,14 +132,14 @@ const AIChatbot = () => {
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-100 to-purple-100 border border-indigo-200 flex items-center justify-center mr-2 flex-shrink-0 text-xs shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-900 to-purple-900 border border-indigo-500/30 flex items-center justify-center mr-2 flex-shrink-0 text-xs">
                       🤖
                     </div>
                   )}
-                  <div className={`max-w-[75%] rounded-2xl px-5 py-3 text-sm shadow-sm leading-relaxed ${
+                  <div className={`max-w-[75%] rounded-2xl px-5 py-3 text-sm shadow-[0_4px_12px_rgba(0,0,0,0.5)] leading-relaxed ${
                     msg.role === 'user' 
                       ? 'bg-gradient-to-br from-indigo-600 to-indigo-700 text-white rounded-br-sm shadow-indigo-500/20' 
-                      : 'bg-white/80 backdrop-blur-sm text-gray-800 border border-white/50 rounded-bl-sm shadow-black/5'
+                      : 'bg-black/80 backdrop-blur-sm text-gray-200 border border-white/10 rounded-bl-sm'
                   }`}>
                     {msg.text}
                   </div>
@@ -151,10 +151,10 @@ const AIChatbot = () => {
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                   className="flex justify-start items-end"
                 >
-                   <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-100 to-purple-100 border border-indigo-200 flex items-center justify-center mr-2 text-xs">
+                   <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-indigo-900 to-purple-900 border border-indigo-500/30 flex items-center justify-center mr-2 text-xs">
                       🤖
                    </div>
-                   <div className="bg-white/80 backdrop-blur-sm text-gray-500 px-4 py-3 rounded-2xl rounded-bl-sm border border-white/50 shadow-sm flex gap-1 items-center h-[44px]">
+                   <div className="bg-black/80 backdrop-blur-sm text-gray-500 px-4 py-3 rounded-2xl rounded-bl-sm border border-white/10 flex gap-1 items-center h-[44px]">
                      <span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
                      <span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce [animation-delay:-0.15s]"></span>
                      <span className="w-2 h-2 bg-indigo-400 rounded-full animate-bounce"></span>
@@ -164,7 +164,7 @@ const AIChatbot = () => {
             </div>
 
             {/* Input Area */}
-            <div className="p-4 bg-white/60 backdrop-blur-md border-t border-white/40">
+            <div className="p-4 bg-black/40 backdrop-blur-md border-t border-white/10">
               <div className="relative flex items-center">
                 <input 
                   type="text" 
@@ -172,12 +172,12 @@ const AIChatbot = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
                   placeholder="Ask me anything..."
-                  className="w-full bg-white/80 border border-indigo-100/50 rounded-full pl-5 pr-14 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all shadow-inner text-gray-700 placeholder-gray-400 font-medium"
+                  className="w-full bg-black/80 border border-white/10 rounded-full pl-5 pr-14 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all text-gray-300 placeholder-gray-500 font-medium"
                 />
                 <button 
                   onClick={sendMessage}
                   disabled={!input.trim() || isTyping}
-                  className="absolute right-1.5 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center disabled:opacity-40 disabled:bg-gray-400 hover:bg-indigo-700 hover:scale-105 transition-all shadow-md active:scale-95"
+                  className="absolute right-1.5 w-10 h-10 bg-indigo-600 text-white rounded-full flex items-center justify-center disabled:opacity-40 disabled:bg-gray-400 hover:bg-indigo-700 hover:scale-105 transition-all shadow-[0_8px_24px_rgba(0,0,0,0.6)] active:scale-95"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 ml-0.5">
                     <path d="M3.478 2.404a.75.75 0 0 0-.926.941l2.432 7.905H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.905a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.986.75.75 0 0 0 0-1.218A60.517 60.517 0 0 0 3.478 2.404Z" />

@@ -49,25 +49,25 @@ const StudyRoom = () => {
       <div className="w-full max-w-[1600px] h-[calc(100vh-2rem)] mx-auto p-4 md:p-6 flex flex-col">
         <div className="flex items-center justify-between mb-4 glass-panel p-4 rounded-2xl">
           <div>
-            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600">
+            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
               {activeRoom.name}
             </h2>
             <div className="flex items-center gap-3 mt-1">
               <span className={`px-2 py-0.5 rounded text-xs font-semibold uppercase ${
-                activeRoom.difficulty === 'Easy' ? 'bg-green-100 text-green-700' :
-                activeRoom.difficulty === 'Medium' ? 'bg-orange-100 text-orange-700' :
-                'bg-red-100 text-red-700'
+                activeRoom.difficulty === 'Easy' ? 'bg-green-500/20 text-green-400' :
+                activeRoom.difficulty === 'Medium' ? 'bg-orange-500/20 text-orange-400' :
+                'bg-red-500/20 text-red-400'
               }`}>
                 {activeRoom.difficulty}
               </span>
               <span className="text-sm text-gray-500 font-medium">
-                Problem: <span className="text-gray-900">{activeRoom.problem}</span>
+                Problem: <span className="text-gray-100">{activeRoom.problem}</span>
               </span>
             </div>
           </div>
           <button 
             onClick={handleLeave}
-            className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium transition-colors border border-gray-200"
+            className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl font-medium transition-colors border border-white/10"
           >
             Leave Room
           </button>
@@ -75,18 +75,18 @@ const StudyRoom = () => {
 
         <div className="flex-1 flex gap-4 overflow-hidden mb-4 rounded-2xl">
           {/* Main Workspace Frame (Mock IDE/Whiteboard) */}
-          <div className="flex-1 glass-panel border border-white/40 flex flex-col relative overflow-hidden rounded-2xl shadow-sm">
+          <div className="flex-1 glass-panel border border-white/10 flex flex-col relative overflow-hidden rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
              <div className="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
                <div className="text-9xl mb-4">👨‍💻</div>
              </div>
-             <div className="p-4 border-b border-gray-200/50 bg-white/30 backdrop-blur-md z-10 flex justify-between items-center">
-               <div className="font-mono text-sm font-semibold text-gray-600 flex items-center gap-2">
+             <div className="p-4 border-b border-white/10 bg-white/5 backdrop-blur-md z-10 flex justify-between items-center">
+               <div className="font-mono text-sm font-semibold text-gray-400 flex items-center gap-2">
                  <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
                  Live Session
                </div>
                <div className="flex -space-x-2">
                  {[...Array(activeRoom.users)].map((_, i) => (
-                   <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-gray-300 flex items-center justify-center text-xs font-bold shadow-sm">
+                   <div key={i} className="w-8 h-8 rounded-full border-2 border-black bg-gray-700 flex items-center justify-center text-xs font-bold text-white">
                      {String.fromCharCode(65 + i)}
                    </div>
                  ))}
@@ -96,7 +96,7 @@ const StudyRoom = () => {
                <div className="text-gray-400 mb-2">// Shared workspace for {activeRoom.name}</div>
                <div className="text-gray-400 mb-4">// Discuss approaches or share snippets in the chat</div>
                
-               <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 text-gray-800">
+               <div className="p-4 bg-[#0b0b12] rounded-xl border border-white/20 text-gray-200">
                   <div className="font-bold text-gray-400 mb-2">Editor Mockup</div>
                   <span className="text-blue-600">class</span> <span className="text-yellow-600">Solution</span> {'{'}
                   <br />
@@ -112,9 +112,9 @@ const StudyRoom = () => {
           </div>
 
           {/* Chat Sidebar */}
-          <div className="w-80 glass-panel border border-white/40 flex flex-col rounded-2xl shadow-sm bg-white/40 overflow-hidden">
-            <div className="p-4 border-b border-gray-200/50 bg-white/50 backdrop-blur-md">
-              <h3 className="font-bold text-gray-800">Discussion</h3>
+          <div className="w-80 glass-panel border border-white/10 flex flex-col rounded-2xl shadow-[0_4px_12px_rgba(0,0,0,0.5)] bg-black/40 overflow-hidden">
+            <div className="p-4 border-b border-white/10 bg-white/5 backdrop-blur-md">
+              <h3 className="font-bold text-gray-200">Discussion</h3>
             </div>
             
             <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -129,9 +129,9 @@ const StudyRoom = () => {
                     {!msg.isSystem && <span className="text-xs text-gray-500 mb-1 ml-1">{msg.user}</span>}
                     <div className={`
                       px-3 py-2 rounded-xl text-sm 
-                      ${msg.isSystem ? 'bg-gray-100/80 text-gray-500 w-full text-center text-xs italic border border-gray-200/50' : 
-                        msg.user === 'You' ? 'bg-red-500 text-white shadow-sm rounded-tr-none' : 
-                        'bg-white text-gray-800 shadow-sm border border-gray-100 rounded-tl-none'
+                      ${msg.isSystem ? 'bg-white/5 text-gray-500 w-full text-center text-xs italic border border-white/10' : 
+                        msg.user === 'You' ? 'bg-red-500 text-white shadow-[0_4px_12px_rgba(0,0,0,0.5)] rounded-tr-none' : 
+                        'bg-[#151521] text-gray-200 shadow-[0_4px_12px_rgba(0,0,0,0.5)] border border-white/10 rounded-tl-none'
                       }
                     `}>
                       {msg.text}
@@ -141,18 +141,18 @@ const StudyRoom = () => {
               </AnimatePresence>
             </div>
             
-            <div className="p-4 bg-white/50 border-t border-gray-200/50 backdrop-blur-md">
+            <div className="p-4 bg-white/5 border-t border-white/10 backdrop-blur-md">
               <form onSubmit={handleSendMessage} className="flex gap-2">
                 <input 
                   type="text" 
                   value={chatMessage}
                   onChange={(e) => setChatMessage(e.target.value)}
                   placeholder="Share ideas..." 
-                  className="flex-1 bg-white/80 border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20"
+                  className="flex-1 bg-black/80 border border-white/20 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20"
                 />
                 <button 
                   type="submit"
-                  className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors shadow-sm"
+                  className="p-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                 </button>
@@ -168,12 +168,12 @@ const StudyRoom = () => {
     <div className="w-full max-w-[1600px] mx-auto p-4 md:p-8">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 drop-shadow-sm">
+          <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 drop-shadow-sm">
             Study Rooms
           </h1>
           <p className="text-gray-500 mt-2">Join live peer programming sessions and solve LeetCode problems together.</p>
         </div>
-        <button className="px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl shadow-sm transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+        <button className="px-5 py-2.5 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.5)] transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
           <span>+</span> Create Room
         </button>
       </div>
@@ -185,33 +185,33 @@ const StudyRoom = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
-            className="glass-panel border-white/40 p-1 flex flex-col rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 group"
+            className="glass-panel border-white/10 p-1 flex flex-col rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300 group"
           >
             <div className={`h-2 min-w-full bg-gradient-to-r ${room.theme} rounded-t-xl`}></div>
             <div className="p-5 flex flex-col flex-1">
               <div className="flex justify-between items-start mb-3">
                 <span className={`px-2.5 py-1 rounded-md text-xs font-bold uppercase tracking-wider ${
-                  room.difficulty === 'Easy' ? 'bg-green-100 text-green-700 border border-green-200' :
-                  room.difficulty === 'Medium' ? 'bg-orange-100 text-orange-700 border border-orange-200' :
-                  'bg-red-100 text-red-700 border border-red-200'
+                  room.difficulty === 'Easy' ? 'bg-green-500/20 text-green-400 border border-green-500/20' :
+                  room.difficulty === 'Medium' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/20' :
+                  'bg-red-500/20 text-red-400 border border-red-500/20'
                 }`}>
                   {room.difficulty}
                 </span>
-                <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 bg-gray-100 px-2 py-1 rounded-md">
+                <span className="flex items-center gap-1.5 text-xs font-semibold text-gray-400 bg-white/5 px-2 py-1 rounded-md border border-white/10">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                   {room.users}/{room.maxUsers}
                 </span>
               </div>
               
-              <h3 className="text-lg font-bold text-gray-900 mb-1">{room.name}</h3>
-              <p className="text-sm text-gray-600 font-medium mb-6 line-clamp-1 italic">
+              <h3 className="text-lg font-bold text-gray-100 mb-1">{room.name}</h3>
+              <p className="text-sm text-gray-400 font-medium mb-6 line-clamp-1 italic">
                 Problem: {room.problem}
               </p>
               
-              <div className="mt-auto pt-4 border-t border-gray-100">
+              <div className="mt-auto pt-4 border-t border-white/10">
                 <button
                   onClick={() => handleJoin(room)}
-                  className="w-full py-2.5 bg-gray-900 text-white rounded-xl font-medium shadow-sm hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 group-hover:scale-[1.02]"
+                  className="w-full py-2.5 bg-gray-900 text-white rounded-xl font-medium shadow-[0_4px_12px_rgba(0,0,0,0.5)] hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 group-hover:scale-[1.02]"
                 >
                   Join Session <span>→</span>
                 </button>

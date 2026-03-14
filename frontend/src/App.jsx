@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50/50 text-gray-900 font-sans antialiased selection:bg-red-200 selection:text-red-900 relative overflow-hidden">
+      <div className="min-h-screen bg-black text-white font-sans antialiased selection:bg-red-500/30 selection:text-red-200 relative overflow-hidden">
         {/* Animated Background Mesh */}
         <div className="bg-mesh-1"></div>
         <div className="bg-mesh-2"></div>
@@ -19,10 +19,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route 
               path="/dashboard/*" 
-              element={
-                // TODO: Add protected route logic here later
-                <Dashboard />
-              } 
+              element={<Dashboard />} 
             />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>

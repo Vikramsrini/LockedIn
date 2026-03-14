@@ -4,6 +4,7 @@ import {
   Sparkles,
   Lock,
   Bell,
+  Mic,
   TrendingUp,
 } from 'lucide-react';
 
@@ -61,5 +62,14 @@ export const featureCards = [
     ring: 'ring-rose-500/20',
     iconClassName: 'text-rose-600',
     badge: 'Momentum first',
+  },
+  {
+    title: 'AI Mock Interviewer',
+    description: 'Voice-enabled HR, technical, resume, and company rounds with instant feedback.',
+    icon: Mic,
+    accent: 'from-red-400 to-orange-500',
+    ring: 'ring-red-500/20',
+    iconClassName: 'text-red-500',
+    badge: 'Interview ready',
   },
 ];
