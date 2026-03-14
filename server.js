@@ -17,6 +17,10 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('<h1>LockedIn API is Running</h1><p>Frontend should be deployed separately with the <b>frontend</b> root directory.</p>');
+});
+
 const INTERVIEW_LIBRARY = {
   hr: {
     label: 'HR',
